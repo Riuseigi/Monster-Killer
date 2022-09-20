@@ -1,4 +1,6 @@
-// Global Variables
+
+/* A constant variable that is used to set the value of the attack, strong attack, monster attack and
+heal. */
 const ATTACK_VALUE = 10;
 const STRONG_ATTACK_VALUE = 17;
 const MONSTER_ATTACK_VALUE =14;
@@ -6,16 +8,21 @@ const HEAL_VALUE = 20;
 
 const MODE_ATTACK = 'ATTACK'
 const MODE_STRONG_ATTACK = 'STRONG_ATTACK'
+
+const enteredValue = prompt('Maximum life for you and the monster.', '100')
 let chosenMaxLife = 100;
-let currentMonsterHealth = chosenMaxLife;
-let currentPlayerHealth = chosenMaxLife;
+currentMonsterHealth = chosenMaxLife;
+currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife); // sets the healthbar to default 100 
-
+function reset(){
+    let currentMonsterHealth = chosenMaxLife;
+    let currentPlayerHealth = chosenMaxLife;
+    resetGame(chosenMaxLife);
+}
 //show the event in alert message
 function endRound(){
-
     const initialPlayerHealth = currentPlayerHealth;  
     const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
     currentPlayerHealth -= playerDamage;
@@ -35,6 +42,9 @@ function endRound(){
     } else if(currentPlayerHealth <= 0 && currentMonsterHealth <=0){
         alert('You have a draw')
     }
+    if (currentMonsterHealth <= 0 || currentMonsterHealth<=0){
+            reset();
+        }
 }
 // gets the attack mode function
 function attackMonster(mode){
