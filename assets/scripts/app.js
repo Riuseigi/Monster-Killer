@@ -21,7 +21,7 @@ currentMonsterHealth = chosenMaxLife;
 currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let battleLog = [];
-adjustHealthBars(chosenMaxLife); 
+adjustHealthBars(chosenMaxLife);
 
 /**
  * The function takes in 4 parameters, and then creates an object with those parameters, and then
@@ -98,7 +98,7 @@ function writeToLog(ev,val,monsterHealth, playerHealth){
     //         finalMonsterHealth: monsterHealth,
     //         finalPlayerHealth: playerHealth,
     //     };
-        
+
     // } else if(ev === LOG_EVENT_PLAYER_HEAL){
     //     logEntry ={
     //         event: ev,
@@ -124,7 +124,7 @@ function reset(){
 }
 //show the event in alert message
 function endRound(){
-    const initialPlayerHealth = currentPlayerHealth;  
+    const initialPlayerHealth = currentPlayerHealth;
     const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
     currentPlayerHealth -= playerDamage;
     writeToLog(LOG_EVENT_MONSTER_ATTACK,
@@ -182,7 +182,7 @@ function attackMonster(mode){
         damage,
         currentMonsterHealth,
         currentPlayerHealth);
-        
+
     endRound();
 }
 // attack button
@@ -213,7 +213,37 @@ function healPlayerHandler(){
 	endRound();
 }
 function pirntLogHandler(){
-    console.log(battleLog);
+    // For loop method
+    // for(let  i = 0; i < 3;i++){
+    //     console.log('--------------');
+    // }
+    // Do while loop method
+    // let j = 0
+    // do{
+    //     console.log(j)
+    //     j++;
+    // } while (j<3);
+    //While loop Method
+    // let j = 0
+    // while(j<3){
+    //     console.log(j);
+    //     j++;
+    // }
+    // for(let i = 10; i>0;i--){
+    //     console.log(i);
+    // }
+    // for (let i = 0; i <battleLog.length; i++){
+    //     console.log(battleLog[i]);
+    // }
+    // console.log(battleLog);
+    let i = 0;
+    for (const logEntry of battleLog){
+        console.log(`#${i}`)
+        for(const key in logEntry){
+        console.log(`${key} => ${logEntry[key]}`);
+        }
+        i++
+    }
 }
 // Event Listeners
 healBtn.addEventListener('click', healPlayerHandler)
