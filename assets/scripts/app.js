@@ -228,10 +228,17 @@ function pirntLogHandler(){
     // }
     // Do while loop method
     // let j = 0
-    // do{
-    //     console.log(j)
+    // outerWhile: do{ //  label  the loop
+    //     console.log('outer',j);
+    //     innerFor: for(let k = 0; k<5; k++){ // label the loop
+    //         if(k === 3){
+    //             //break outerWhile;  // call the labaled loop
+    //             //continue outerWhile;
+    //         }
+    //         console.log('inner',k);
+    //     }
     //     j++;
-    // } while (j<3);
+    //} while (j<3);
     //While loop Method
     // let j = 0
     // while(j<3){
@@ -245,18 +252,19 @@ function pirntLogHandler(){
     //     console.log(battleLog[i]);
     // }
     // console.log(battleLog);
-    let i = 0;
-    for (const logEntry of battleLog){
-        if(!lastLogEntry && lastLogEntry !==0    || lastLogEntry < i){
-            console.log(`#${i}`)
-            for(const key in logEntry){
-            console.log(`${key} => ${logEntry[key]}`);
-            }
-            lastLogEntry = i;
-            break;
-        }
-        i++
-    }
+    /* Looping through the battleLog array and printing out the last entry in the array. */
+    // let i = 0;
+    // for (const logEntry of battleLog){
+    //     if(!lastLogEntry && lastLogEntry !==0    || lastLogEntry < i){
+    //         console.log(`#${i}`)
+    //         for(const key in logEntry){
+    //         console.log(`${key} => ${logEntry[key]}`);
+    //         }
+    //         lastLogEntry = i;
+    //         break;
+    //     }
+    //     i++
+    // }
 }
 // Event Listeners
 healBtn.addEventListener('click', healPlayerHandler)
