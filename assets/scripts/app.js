@@ -22,9 +22,8 @@ let lastLogEntry;
 function getMaxLifeValues(){
     /* Asking the user to enter a value, and then it is converting that value to an integer. */
     const enteredValue = prompt('Maximum life for you and the monster.', '100')
-
     let parsedValue = parseInt(enteredValue);
-  /* Checking if the value entered by the user is a number or not, and if it is not a number,
+/* Checking if the value entered by the user is a number or not, and if it is not a number,
   then it is throwing an error. */
     if (isNaN(parsedValue) || parsedValue<=0){
         throw{message: 'Invalid user input, not a number'}
@@ -38,17 +37,16 @@ function getMaxLifeValues(){
 it is setting the value of the chosenMaxLife variable to 100. */
 let chosenMaxLife;
 try {
-    let chosenMaxLife = getMaxLifeValues();
+    chosenMaxLife = getMaxLifeValues();
 } catch (error) {
     console.log(error);
     chosenMaxLife = 100;
-    alert("You entered something wrong, default value of 100 was used.")
-    // throw error;
+    alert("You entered something wrong, default value of 100 was used.")  // throw error;
 } 
 
 
-currentMonsterHealth = chosenMaxLife;
-currentPlayerHealth = chosenMaxLife;
+let currentMonsterHealth = chosenMaxLife;
+let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
