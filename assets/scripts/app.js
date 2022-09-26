@@ -17,19 +17,40 @@ const LOG_EVENT_MONSTER_ATTACK = 'MONSTER_ATTACK';
 const LOG_EVENT_PLAYER_HEAL = 'PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
-
-/* Asking the user to enter a value, and then it is converting that value to an integer. */
-const enteredValue = prompt('Maximum life for you and the monster.', '100')
-let chosenMaxLife = parseInt(enteredValue);
+let battleLog = [];
 let lastLogEntry;
-if (isNaN(chosenMaxLife) || chosenMaxLife<=0){
+function getMaxLifeValues(){
+    /* Asking the user to enter a value, and then it is converting that value to an integer. */
+    const enteredValue = prompt('Maximum life for you and the monster.', '100')
+
+    let parsedValue = parseInt(enteredValue);
+  /* Checking if the value entered by the user is a number or not, and if it is not a number,
+  then it is throwing an error. */
+    if (isNaN(parsedValue) || parsedValue<=0){
+        throw{message: 'Invalid user input, not a number'}
+    }
+    return parsedValue;
+    }
+
+
+
+/* Trying to get the value of the chosenMaxLife variable, and if it is not able to get the value, then
+it is setting the value of the chosenMaxLife variable to 100. */
+let chosenMaxLife;
+try {
+    let chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+    console.log(error);
     chosenMaxLife = 100;
-}
+    alert("You entered something wrong, default value of 100 was used.")
+    // throw error;
+} 
+
 
 currentMonsterHealth = chosenMaxLife;
 currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
-let battleLog = [];
+
 adjustHealthBars(chosenMaxLife);
 
 /**
@@ -47,6 +68,8 @@ function writeToLog(ev,val,monsterHealth, playerHealth){
         finalMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth,
     };
+/* Checking the value of the ev parameter, and then depending on the value of the ev parameter, it
+   is setting the value of the logEntry variable. */
     switch (ev) {
         case LOG_EVENT_PLAYER_ATTACK:
             logEntry.target = 'MONSTER';
@@ -253,18 +276,18 @@ function pirntLogHandler(){
     // }
     // console.log(battleLog);
     /* Looping through the battleLog array and printing out the last entry in the array. */
-    // let i = 0;
-    // for (const logEntry of battleLog){
-    //     if(!lastLogEntry && lastLogEntry !==0    || lastLogEntry < i){
-    //         console.log(`#${i}`)
-    //         for(const key in logEntry){
-    //         console.log(`${key} => ${logEntry[key]}`);
-    //         }
-    //         lastLogEntry = i;
-    //         break;
-    //     }
-    //     i++
-    // }
+    let i = 0;
+    for (const logEntry of battleLog){
+        if(!lastLogEntry && lastLogEntry !==0    || lastLogEntry < i){
+            console.log(`#${i}`)
+            for(const key in logEntry){
+            console.log(`${key} => ${logEntry[key]}`);
+            }
+            lastLogEntry = i;
+            break;
+        }
+        i++
+    }
 }
 // Event Listeners
 healBtn.addEventListener('click', healPlayerHandler)
