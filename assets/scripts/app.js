@@ -8,7 +8,7 @@ const HEAL_VALUE = 20;
 const MODE_ATTACK = 'ATTACK'
 const MODE_STRONG_ATTACK = 'STRONG_ATTACK'
 
-
+// check
 /* A constant variable that is used to set the value of the attack, strong attack, monster attack and
 heal. */
 const LOG_EVENT_PLAYER_ATTACK = 'PLAYER_ATTACK';
